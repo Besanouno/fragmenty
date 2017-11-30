@@ -7,8 +7,9 @@
     android:layout_height="match_parent"
     tools:context="pl.edu.agh.fragments.MainActivity">
 
-    <!--TODO: dodać fragment
-    <fragment ... />
-    -->
+    <fragment android:name="pl.edu.agh.fragments.layout.TitlesFragment" android:id="@+id/titles"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        />
 
 </android.support.constraint.ConstraintLayout>

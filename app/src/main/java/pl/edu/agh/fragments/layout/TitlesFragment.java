@@ -35,7 +35,12 @@ public class TitlesFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String title = (String) parent.getItemAtPosition(position);
-                // TODO : Załadować nowy fragment i przekazać mu tytuł
+                ArticleFragment articleFragment = ArticleFragment.newInstance(title);
+                getFragmentManager()
+                        .beginTransaction()
+                        .add(R.id.fragment_container, articleFragment)
+                        .addToBackStack(null)
+                        .commit();
             }
         });
     }
