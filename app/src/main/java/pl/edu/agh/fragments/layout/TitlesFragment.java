@@ -1,5 +1,7 @@
 package pl.edu.agh.fragments.layout;
 
+import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -35,13 +37,25 @@ public class TitlesFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String title = (String) parent.getItemAtPosition(position);
-                ArticleFragment articleFragment = ArticleFragment.newInstance(title);
-                getFragmentManager()
-                        .beginTransaction()
-                        .add(R.id.fragment_container, articleFragment)
-                        .addToBackStack(null)
-                        .commit();
+                Context context = getActivity().getBaseContext();
+                switch (context.getResources().getConfiguration().orientation) {
+                    case Configuration.ORIENTATION_LANDSCAPE:
+                        // TODO : Zaktualizuj fragment dodany w main_activity_land.xml odpowiadajacy za wyswietlenie artykulu
+                        break;
+                    case Configuration.ORIENTATION_PORTRAIT:
+                        loadArticleOnNewWindow(title); /* Zachowanie jak w poprzednim zadaniu */
+                        break;
+                }
             }
         });
+    }
+
+    private void loadArticleOnNewWindow(String title) {
+        ArticleFragment articleFragment = ArticleFragment.newInstance(title);
+        getFragmentManager()
+                .beginTransaction()
+                .add(R.id.fragment_container, articleFragment)
+                .addToBackStack(null)
+                .commit();
     }
 }
