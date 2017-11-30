@@ -40,7 +40,7 @@ public class TitlesFragment extends Fragment {
                 Context context = getActivity().getBaseContext();
                 switch (context.getResources().getConfiguration().orientation) {
                     case Configuration.ORIENTATION_LANDSCAPE:
-                        // TODO : Zaktualizuj fragment dodany w main_activity_land.xml odpowiadajacy za wyswietlenie artykulu
+                        updateArticleFragment(title);
                         break;
                     case Configuration.ORIENTATION_PORTRAIT:
                         loadArticleOnNewWindow(title); /* Zachowanie jak w poprzednim zadaniu */
@@ -48,6 +48,11 @@ public class TitlesFragment extends Fragment {
                 }
             }
         });
+    }
+
+    private void updateArticleFragment(String title) {
+        ArticleFragment articleFragment = (ArticleFragment) getFragmentManager().findFragmentById(R.id.article);
+        articleFragment.update(title);
     }
 
     private void loadArticleOnNewWindow(String title) {

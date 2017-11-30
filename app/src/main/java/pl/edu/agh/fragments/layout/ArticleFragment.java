@@ -42,12 +42,19 @@ public class ArticleFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        TextView titleTextView = view.findViewById(R.id.title);
-        TextView contentTextView = view.findViewById(R.id.content);
+        update(title);
+    }
 
-        if (title != null) {
-            titleTextView.setText(title);
-            contentTextView.setText(News.getInstance().getContent(title));
+    public void update(String title) {
+        View view = getView();
+        if (view != null) {
+            TextView titleTextView = view.findViewById(R.id.title);
+            TextView contentTextView = view.findViewById(R.id.content);
+
+            if (title != null) {
+                titleTextView.setText(title);
+                contentTextView.setText(News.getInstance().getContent(title));
+            }
         }
     }
 }
